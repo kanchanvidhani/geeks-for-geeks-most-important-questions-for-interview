@@ -151,7 +151,7 @@ class Tree
         if(list.size()== level){
             list.add(root.data);
         }
-        //first left will be called since it is inoder traversal
+        //first left will be called since it is preorder traversal
         left(root.left,list,level+1);
         left(root.right,list,level+1);  
     }
