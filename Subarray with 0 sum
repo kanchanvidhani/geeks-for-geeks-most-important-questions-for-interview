@@ -1,0 +1,82 @@
+// { Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.lang.*;
+import java.io.*;
+class Driverclass
+ {
+	public static void main (String[] args) {
+	   
+	   Scanner in = new Scanner(System.in);
+	   int t= in.nextInt();
+	   while(t-->0){
+	       
+	       int n = in.nextInt();
+	       int [] arr= new int[n];
+	       for(int i=0;i<n;i++) {
+	           arr[i] = in.nextInt();
+	       }
+	       System.out.println(new Solution().countSubarrWithEqualZeroAndOne(arr, n));
+	   }
+	 }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    //Function to count subarrays with 1s and 0s.
+    static int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+        
+        int ans=0,sum=0;
+       HashMap<Integer,Integer>  hs = new HashMap<>();
+       hs.put(0,1);
+       for(int i: arr){
+           if(i==0){
+               sum +=-1;
+           }else{
+               sum+=1;
+           }
+           
+           if(hs.containsKey(sum)){
+               ans +=hs.get(sum);
+               hs.put(sum,hs.get(sum)+1);
+           }else{
+               hs.put(sum,1);
+           }
+       }
+        /*
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==0){
+                z++;
+            }else{
+                o++;
+            }
+            
+            for(int j=i+1;j<arr.length;j++){
+                 if(arr[j]==0){
+                z++;
+            }else{
+                o++;
+            }
+            
+            if(z==o){
+                count++;
+               
+            }
+            }
+             z=0;
+                o=0;
+        }
+        */
+        return ans;
+    }
+}
+
+
