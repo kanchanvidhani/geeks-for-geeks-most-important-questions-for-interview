@@ -1,0 +1,115 @@
+// { Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class Main 
+{
+    	public static void main (String[] args) throws Exception
+	{
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        for(int g = 0;g < t;g++)
+        {
+            String[] str = (br.readLine()).trim().split(" ");
+            int M = Integer.parseInt(str[0]);
+            int N = Integer.parseInt(str[1]);
+            
+            int[] x = new int[M];
+            str = (br.readLine()).trim().split(" ");
+            for(int i = 0;i< M;i++)
+                x[i] = Integer.parseInt(str[i]);
+                
+            str = (br.readLine()).trim().split(" ");
+            int[] y = new int[N];
+            for(int i = 0;i< N;i++)
+            {
+                y[i] = Integer.parseInt(str[i]);
+                
+            }
+            System.out.println(new Solution().countPairs(x, y, M, N));
+           
+        }
+	}
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    
+    // x[], y[]: input array elements
+    // M, N: size of arrays x[] and y[] respectively
+    //Function to count number of pairs such that x^y is greater than y^x.
+    static int getIndex(int Y[],int N,int val){
+        int low = 0;
+        int high  =N-1;
+        int ans =-1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(Y[mid]>val){
+                ans = mid;
+                high = mid-1;
+                
+            }else{
+                low= mid+1;
+                
+            }
+
+        }
+        return ans;
+    }
+    
+    static long countPairs(int X[], int Y[], int M, int N)
+    {
+        int zero=0,one =0,two=0,
+        three=0,four=0;
+        Arrays.sort(X);
+        Arrays.sort(Y);
+        for(int i=0;i<N;i++){
+            if(Y[i]==0)zero++;
+            if(Y[i]==2)two++;
+            if(Y[i]==1)one++;
+            if(Y[i]==3)three++;
+            if(Y[i]==4)four++;
+        }
+        
+        long count=0;
+        for(int i =0;i<M;i++){
+            //ist exception...
+            if(X[i]==0){
+                continue;
+            }
+            //2nd exception..
+            else if(X[i]==1){
+                count+=zero;
+            }
+            //3rd
+            else if(X[i]==2){
+                int ind = getIndex(Y,N,2);
+                if(ind!=-1){
+                    count+= N-ind;
+                }
+                count -=three;
+                count -=four;
+                count+=(one+zero);
+            }
+            //exceptionn
+            else{
+                int ind = getIndex(Y,N,X[i]);
+                if(ind!=-1){
+                    count+=N-ind;
+                }
+                count+=(one+zero);
+                if(X[i]==3){
+                    count+=two;
+                }
+            }
+        }
+        return count;
+    }
+}
