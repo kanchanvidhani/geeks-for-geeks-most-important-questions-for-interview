@@ -1,0 +1,6 @@
+class Solution{
+    int isdivisible7(String num1){
+       java.math.BigInteger h = new java.math.BigInteger(num1);
+       return (h.mod(java.math.BigInteger.valueOf(7))==java.math.BigInteger.ZERO)?1:0;
+    }
+}
