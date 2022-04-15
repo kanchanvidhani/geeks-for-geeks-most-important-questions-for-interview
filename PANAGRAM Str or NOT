@@ -1,0 +1,28 @@
+// { Driver Code Starts
+//Initial template for JAVA
+
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+
+ // } Driver Code Ends
+//User function template for JAVA
+
+class Solution
+{
+    //Function to check if a string is Pangram or not.
+    public static boolean checkPangram  (String str) {
+        HashSet<Character>  s = new HashSet<>();
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)>='A' && str.charAt(i)<='Z'  || str.charAt(i)>='a'&&str.charAt(i)<='z'){
+                s.add(str.charAt(i));
+            }
+        }
+        if(s.size() == 26){
+            return true;
+        }
+    return false;
+    }
+}
+
