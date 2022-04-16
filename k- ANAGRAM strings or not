@@ -1,0 +1,44 @@
+Given two strings of lowercase alphabets and a value K, your task is to complete the given function which tells if  two strings are K-anagrams of each other or not.
+
+Two strings are called K-anagrams if both of the below conditions are true.
+1. Both have same number of characters.
+2. Two strings can become anagram by changing at most K characters in a string.
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Solution {
+    boolean areKAnagrams(String s1, String s2, int k) {
+       
+        if(s1.length() != s2.length()){
+            return false;
+        }
+        int count=0;
+        HashMap<Character, Integer> h = new HashMap<>();
+        for(int i=0;i<s1.length();i++){
+           if(h.containsKey(s1.charAt(i))){
+                h.put(s1.charAt(i),h.get(s1.charAt(i))+1);
+            }else{
+                 h.put(s1.charAt(i),1);
+            }
+            
+            // h.put(s1.charAt(i), h.containsKey(s1.charAt(i)) ? h.get(s1.charAt(i)) + 1 : 1);
+
+        }
+        for(int i=0;i<s2.length();i++){
+            if(!h.containsKey(s2.charAt(i))){
+                count++;
+            }
+            else {
+                h.put(s2.charAt(i), h.get(s2.charAt(i)) - 1);
+               if(h.get(s2.charAt(i))==0){
+                    h.remove(s2.charAt(i));
+                }
+            }
+             //
+        }
+        if(count<=k){
+        return true;
+        }
+        return false;
+    }
+}
