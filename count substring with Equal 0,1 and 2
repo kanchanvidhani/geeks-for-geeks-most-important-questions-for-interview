@@ -1,0 +1,47 @@
+Given a string str of length N which consists of only 0, 1 or 2s, count the number of substring which have equal number of 0s, 1s and 2s.
+ 
+
+Example 1:
+
+Input: str = “0102010”
+Output: 2
+Explanation: Substring str[2, 4] = “102” and
+substring str[4, 6] = “201” has equal number
+of 0, 1 and 2 
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+class Solution 
+{ 
+    long getSubstringWithEqual012(String str) 
+    { 
+        
+        HashMap<String ,Integer> h = new HashMap<>();
+        
+        int c0=0,c1=0,c2=0;
+        long count=0;
+        h.put("0*0",1);
+        for(int i=0;i<str.length();i++){
+              if(str.charAt(i)=='0'){
+               c0++;
+                  
+              }else if(str.charAt(i)=='1'){
+                  c1++;
+              }else{
+                  c2++;
+              }
+              int c01 = c1-c0;
+              int c12 = c2-c1;
+              String k  = c01 +"*"+c12;
+              if(h.containsKey(k)){
+                 count +=(long) h.get(k);
+              }
+              h.put(k , h.getOrDefault(k,0)+1);
+        }        
+        return count;
+    }
+} 
