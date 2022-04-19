@@ -1,0 +1,14 @@
+ class Solution {
+    String findSum(String X, String Y) {
+      /* int i = Integer.parseInt(X);
+       int j = Integer.parseInt(Y);
+       long sum =i+j;
+       return sum.toString(sum);
+       */
+       java.math.BigInteger b1 = new   java.math.BigInteger(X);
+        java.math.BigInteger b2 = new   java.math.BigInteger(Y);
+         java.math.BigInteger b3 ;
+         b3 = b1.add(b2);
+         return b3.toString() ;
+    }
+}
