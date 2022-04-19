@@ -1,0 +1,22 @@
+class Solution {
+    public String excelColumn(int N){
+        
+        //  Your code here
+        String ans="";
+               
+        //edge case
+        while(N>0){
+             int rem = N%26;
+        if(rem==0){
+            ans ='Z'+ans;
+           N= N/26-1;
+        }
+        else{
+            char c = (char)((int)'A'+ rem - 1);
+            ans =c+ans;
+            N=N/26;
+        }
+        }
+        return ans;
+    }
+}
