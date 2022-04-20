@@ -1,0 +1,17 @@
+Input: paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]
+Output: "Sao Paulo" 
+Explanation: Starting at "London" city you will reach "Sao Paulo" city which is the destination city. Your trip consist of: "London" -> "New York" -> "Lima" -> "Sao Paulo".
+class Solution {
+    public String destCity(List<List<String>> paths) {
+       Set<String>  s = new HashSet<>();
+        for(List<String> p1 : paths){
+            s.add(p1.get(0));
+        }
+        for(List<String> p2 : paths){
+            if(!s.contains(p2.get(1))){
+                return p2.get(1);
+            }
+        }
+        return "";
+    }
+}
