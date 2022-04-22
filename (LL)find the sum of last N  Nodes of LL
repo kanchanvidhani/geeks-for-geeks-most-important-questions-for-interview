@@ -1,0 +1,43 @@
+Given a single linked list of size M, your task is to complete the function sumOfLastN_Nodes(), which should return the sum of last N nodes of the linked list.
+Example:
+Input:
+2
+6 3
+5 9 6 3 4 10
+2 2
+1 2
+
+Output:
+17
+3
+
+Explanation:
+Testcase 1: Sum of last three nodes in the linked list is 3 + 4 + 10 = 17.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+class Solution {
+    
+    //Return the sum of last k nodes
+    public int sum(Node head, int k){
+      //write code here
+       int N=0;
+       Node n = head;       
+       while(n!=null){
+           n=n.next;
+           N++;
+       }
+       int i=0;
+       while(i !=(N-k)){
+           head= head.next;
+          i++;
+           
+       }
+       int sum=0;
+       for(int kl =i;kl<N;kl++){
+           sum+=head.data;
+           head = head.next;
+       }
+       return sum;
+    }
+}
