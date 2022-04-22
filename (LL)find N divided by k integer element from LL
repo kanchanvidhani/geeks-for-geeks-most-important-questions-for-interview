@@ -1,0 +1,44 @@
+Given a singly linked list and a number k. Write a function to find the (N/k)th element, where N is the number of elements in the list. We need to consider ceil value in case of decimals.
+Example:
+Input:
+2
+6
+1 2 3 4 5 6
+2
+5
+2 7 9 3 5
+3
+
+Output:
+3
+7
+
+Explanation:
+Testcase 1: 6/2th element is the 3rd(1-based indexing) element which is 3.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class GfG
+{
+    public static int nknode(Node head, int k)
+    {
+       // add your code here
+       int N=0;
+    Node n = head;       
+       while(n.next!=null){
+           n=n.next;
+       N++;
+       }
+       int find =(int)Math.ceil((N/k));
+       
+       
+       n= head;
+     for(int i=0;i!=find;i++){
+           n= n.next;
+           //i++;
+       }
+       if(head ==null ||k<0){
+           return -1;
+       }
+       int s = n.data;
+       return s;
+    }
+}
