@@ -1,0 +1,52 @@
+Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order.
+
+Return the shortest such subarray and output its length.
+
+ 
+
+Example 1:
+
+Input: nums = [2,6,4,8,10,9,15]
+Output: 5
+Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: 0
+Example 3:
+
+Input: nums = [1]
+Output: 0
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        if(nums.length==1||nums.length==0){
+            return 0;
+        }
+        /*array copy ke methods.
+        1st--> assignment operator...but chnages into one array will be reflected         on both.
+        2nd--> clone();
+        3rd System.arraycopy(startarray,index,end,index, length);
+        */
+        
+        int ar[] = nums.clone();
+            Arrays.sort(nums);
+         int s =0;
+        int e = nums.length-1;
+        for(;s<nums.length;s++){
+          if(ar[s]!=nums[s]){
+              break;
+          }
+         }
+        // base case
+        if(s>=nums.length-1){
+            return 0;
+        }
+        for(;e>=0;e--){
+            if(ar[e]!=nums[e]){
+              break;
+          }
+        }
+        return e-s+1;
+    }
+}
