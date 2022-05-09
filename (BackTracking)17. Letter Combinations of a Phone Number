@@ -1,0 +1,61 @@
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+2-abc
+3- def
+4- ghi
+5-jkl
+6 - mno
+7- pqrs
+8-tuv
+9- wxyz
+
+Example 1:
+
+Input: digits = "23"
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+Example 2:
+
+Input: digits = ""
+Output: []
+Example 3:
+
+Input: digits = "2"
+Output: ["a","b","c"]
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ class Solution {
+    public List<String> letterCombinations(String digits) {
+       
+        HashMap<Character, String>  h = new HashMap<>();
+        List<String> ans =  new ArrayList<>();
+         if(digits.length()==0){
+            return ans;
+        }
+        h.put('2',"abc");
+        h.put('3',"def");
+        h.put('4',"ghi");
+        h.put('5',"jkl");
+        h.put('6',"mno");
+        h.put('7',"pqrs");
+        h.put('8',"tuv");
+        h.put('9',"wxyz");
+        //digits, total_digits_so_far, hashmap, stringBuilder, ans arrayList.
+        backtrack(digits,0,h,new StringBuilder(),ans );
+        return ans;
+        
+    }
+    public void backtrack(String digits, int tdsf , HashMap<Character, String> h, StringBuilder s, List<String> ans){
+        //base case
+        if(tdsf== digits.length()){
+            ans.add(s.toString());
+            return;
+        }
+        String cur = h.get(digits.charAt(tdsf));
+        for(int i=0;i<cur.length();i++){
+            s.append(cur.charAt(i));
+            backtrack(digits,tdsf+1, h, s, ans);
+            s.deleteCharAt(s.length()-1);
+        }
+    }
+}
