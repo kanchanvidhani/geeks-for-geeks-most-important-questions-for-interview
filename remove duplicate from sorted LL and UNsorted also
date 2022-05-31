@@ -1,0 +1,80 @@
+Given a singly linked list consisting of N nodes. The task is to remove duplicates (nodes with duplicate values) from the given list (if exists).
+Note: Try not to use extra space. Expected time complexity is O(N). The nodes are arranged in a sorted way.
+
+Example 1:
+
+Input:
+LinkedList: 2->2->4->5
+Output: 2 4 5
+Explanation: In the given linked list 
+2 ->2 -> 4-> 5, only 2 occurs more 
+than 1 time.\
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+class GfG
+{
+    //Function to remove duplicates from sorted linked list.
+    Node removeDuplicates(Node head)
+    {
+	// Your code here	
+	   Node temp =head;
+	   while(temp.next!=null){
+	       if(temp.data == temp.next.data){
+	           temp.next = temp.next.next;
+	       }
+	      else temp = temp.next;
+	   }
+	  return head;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+duplicate elements from this unsorted Linked List. When a value appears in multiple nodes, the node which appeared first should be kept, all others duplicates are to be removed.
+
+Example 1:
+
+Input:
+N = 4
+value[] = {5,2,2,4}
+Output: 5 2 4
+Explanation:Given linked list elements are
+5->2->2->4, in which 2 is repeated only.
+So, we will delete the extra repeated
+elements 2 from the linked list and the
+resultant linked list will contain 5->2->4
+Example 2:
+
+Input:
+N = 5
+value[] = {2,2,2,2,2}
+Output: 2
+Explanation:Given linked list elements are
+2->2->2->2->2, in which 2 is repeated. So,
+we will delete the extra repeated elements
+2 from the linked list and the resultant
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class Solution
+{
+    //Function to remove duplicates from unsorted linked list.
+    public Node removeDuplicates(Node head) 
+    {
+         // Your code here
+       //  edge cases 
+         if(head==null ||  head.next==null )  return head;
+         
+         HashMap<Integer, Boolean> hs = new HashMap<>();
+         Node temp = head;
+         hs.put(temp.data, true);
+
+         while(temp.next!=null){
+            if(hs.containsKey(temp.next.data)){
+                temp.next = temp.next.next;
+            }else{
+                hs.put(temp.next.data,true);
+                temp = temp.next;
+            }
+         }
+         return head;
+    }
+}
