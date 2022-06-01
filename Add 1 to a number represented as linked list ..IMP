@@ -1,0 +1,58 @@
+corresponds to a node in linked list. You need to add 1 to it.
+
+Example 1:
+
+Input:
+LinkedList: 4->5->6
+Output: 457 
+Example 2:
+
+Input:
+LinkedList: 1->2->3
+Output: 124 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class Solution
+{
+    public static Node addOne(Node head) 
+    { 
+        //code here.
+        head = reverse(head);
+        Node temp = head;
+        Node pre = null;
+        int car =1;
+        while(temp!=null){
+            if(temp.data+car !=10){
+                temp.data = temp.data+car;
+                car =0;
+                temp = temp.next;
+                break;//we dont have to run anymore when total is not greater than 10;
+            }else{
+                temp.data = 0;
+                pre = temp;
+                temp = temp.next;
+                car=1;
+            }
+        }
+        // possible when 10 is occuring at MSB -- 9999+1 ==1000..we have ot add extra node 
+        if(car==1){
+            Node n =  new Node(1);
+            pre.next = n;
+            n.next =null;
+        }
+        return reverse(head);
+    }
+    static Node reverse(Node head){
+        Node cur = head;
+        Node pre = null;
+        Node next = null;
+        while(cur!=null){
+            next = cur.next;
+            cur.next = pre;
+            pre =cur;
+            cur = next;
+        }
+        head = pre;
+        return head;
+    }
+}
